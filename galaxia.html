@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#070210">
+  <meta name="description" content="Una galaxia de recuerdos para Micaela. En cada estrella, una razón para elegirte.">
+  <title>Nuestra Galaxiaaaaa · Para Micaela ✦</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='54'%3E✨%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/galaxia.css">
+  <!-- Three.js y OrbitControls locales -->
+  <script src="js/three.min.js"></script>
+  <script src="js/OrbitControls.js"></script>
+  <script src="js/galaxia.js" defer></script>
+</head>
+<body>
+
+  <!-- Contenedor 3D WebGL -->
+  <div id="webgl-container" aria-hidden="true"></div>
+
+  <!-- PANTALLA DE INICIO (Tarjeta estilo Image 1) -->
+  <div class="intro-screen" id="pantalla-inicio">
+    <div class="intro-card">
+      <h1 class="intro-title">Nuestra Galaxiaaaaa</h1>
+      <div class="intro-sticker-wrap">
+        <img src="Micaela%20Resource/img/bears-hug.svg" alt="Ositos enamorados abrazándose" class="intro-bears-img" width="220" height="190">
+      </div>
+      <p class="intro-subtitle">PARA MI MUJERCITA</p>
+      <button class="intro-btn" id="boton-iniciar" type="button">INICIAR</button>
+    </div>
+  </div>
+
+  <!-- INTERFAZ Y CONTROLES DEL UNIVERSO (HUD) -->
+  <header class="universe-header" id="cabecera-universo">
+    <a class="back-link" href="index.html#amor"><span aria-hidden="true">←</span> Volver a nuestra carta</a>
+    <span class="universe-brand">Nuestra Galaxiaaaaa<span aria-hidden="true">✦</span></span>
+    <div class="header-actions">
+      <button class="pill" id="boton-musica-galaxia" type="button" aria-label="Reproducir o pausar música"><span class="music-icon" aria-hidden="true">♪</span> Música</button>
+      <button class="pill pill--recuerdos" id="ver-recuerdos" type="button" aria-controls="lista-recuerdos" aria-expanded="false">Nuestros recuerdos <span aria-hidden="true">↗</span></button>
+    </div>
+  </header>
+
+  <div class="music-source" aria-hidden="true"><audio id="musica-galaxia" preload="none"><source src="audio/Tuyo%20(Bolero).mp3" type="audio/mpeg"></audio></div>
+
+  <!-- PANEL LATERAL DE TODOS LOS RECUERDOS -->
+  <aside class="memory-drawer" id="lista-recuerdos" aria-labelledby="lista-titulo" hidden>
+    <div class="drawer-heading">
+      <div>
+        <span>NUESTRAS CONSTELACIONES</span>
+        <h2 id="lista-titulo">Todo lo que somos.</h2>
+      </div>
+      <button class="close-button" id="cerrar-lista" type="button" aria-label="Cerrar lista de recuerdos">×</button>
+    </div>
+    <div class="memory-index" id="indice-recuerdos"></div>
+  </aside>
+
+  <!-- MODAL / LIGHTBOX DE RECUERDO ABIERTO -->
+  <dialog class="memory-dialog" id="recuerdo-abierto" aria-labelledby="recuerdo-titulo">
+    <div class="dialog-top">
+      <span id="recuerdo-numero">01 / 18</span>
+      <button class="close-button" id="cerrar-recuerdo" type="button" aria-label="Cerrar recuerdo">×</button>
+    </div>
+    <div class="dialog-media">
+      <button class="dialog-arrow" id="recuerdo-anterior" type="button" aria-label="Recuerdo anterior">←</button>
+      <div id="contenido-recuerdo"></div>
+      <button class="dialog-arrow" id="recuerdo-siguiente" type="button" aria-label="Recuerdo siguiente">→</button>
+    </div>
+    <div class="dialog-caption">
+      <h2 id="recuerdo-titulo"></h2>
+      <p id="recuerdo-descripcion"></p>
+    </div>
+  </dialog>
+
+  <!-- MODAL DE LA PROMESA DEL CORAZÓN GALÁCTICO -->
+  <dialog class="promise-dialog" id="promesa" aria-labelledby="promesa-titulo">
+    <button class="close-button" id="cerrar-promesa" type="button" aria-label="Cerrar mensaje">×</button>
+    <span class="promise-star" aria-hidden="true">💖</span>
+    <p class="overline">EL CORAZÓN DE NUESTRO UNIVERSO</p>
+    <h2 id="promesa-titulo">Te volvería<br>a <em>encontrar.</em></h2>
+    <p>Entre millones de estrellas y en cualquier rincón del infinito, mis ojos siempre te buscarían a ti.</p>
+    <p>Esta galaxia guarda nuestros recuerdos más hermosos.<br>Pero tú tienes todo mi corazón, hoy, mañana y siempre.</p>
+    <span class="promise-signature">Micaela, en esta vida y en todas. ♡</span>
+  </dialog>
+
+</body>
+</html>
