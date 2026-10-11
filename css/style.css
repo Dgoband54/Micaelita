@@ -253,15 +253,16 @@ body:has(.lightbox[open]) { overflow: hidden; }
   .hero h1 { font-size: clamp(49px, 9.2vw, 65px); line-height: 1.03; margin: 20px 0; }
   .hero h1 em { display: block; }
   .hero__description { font-size: 10px; }
-  .hero__scene { min-height: 470px; margin-top: 30px; padding-top: 130px; }
-  .hero-photo { width: 132px; top: 0; left: calc(50% - 145px); z-index: 1; }
-  .hero-photo--right { width: 115px; right: calc(50% - 145px); left: auto; top: 4px; }
+  .hero__scene { max-width: 390px; min-height: 0; margin-top: 30px; padding-top: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; justify-items: center; gap: 20px 14px; }
+  .hero-photo { position: relative; inset: auto; grid-row: 1; width: min(100%, 168px); z-index: 1; }
+  .hero-photo--left { grid-column: 1; }
+  .hero-photo--right { grid-column: 2; grid-row: 1; width: min(100%, 168px); }
   .hero-photo__paper { padding: 6px 6px 9px; }
-  .hero-photo img { height: 100px; }
-  .hero-photo--right img { height: 112px; }
-  .hero-photo figcaption { font-size: 13px; margin-top: 5px; }
+  .hero-photo img { height: clamp(100px, 28vw, 132px); }
+  .hero-photo--right img { height: clamp(112px, 31vw, 145px); }
+  .hero-photo figcaption { font-size: clamp(11px, 3.2vw, 14px); margin-top: 5px; }
   .hero-photo__paper::before { width: 44px; height: 15px; top: -7px; left: calc(50% - 22px); }
-  .record-player { width: 260px; }
+  .record-player { grid-column: 1 / -1; grid-row: 2; width: min(260px, 100%); }
   .turntable { width: 236px; height: 232px; }
   .vinyl { width: 173px; height: 173px; left: 18px; top: 35px; }
   .tonearm { right: 19px; height: 128px; }
@@ -380,4 +381,3 @@ html.motion-paused { scroll-behavior: auto; }
   .galaxy-invitation { min-height: 610px; padding: 85px 24px; }
   .galaxy-invitation h2 { font-size: 44px; }
 }
-

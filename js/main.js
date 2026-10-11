@@ -231,11 +231,23 @@
   const record = document.querySelector('#reproductor');
   const status = document.querySelector('#estado-musica');
   const dock = document.querySelector('#control-musica-flotante');
+  const hero = document.querySelector('#inicio');
   const musicButtons = [...document.querySelectorAll('#boton-musica, #alternar-musica, #boton-vinilo')];
   let playing = false;
+  let heroVisible = true;
+
+  function syncMusicDock() {
+    const bounds = hero.getBoundingClientRect();
+    heroVisible = bounds.bottom > window.innerHeight * 0.12 && bounds.top < window.innerHeight * 0.88;
+    dock.hidden = !playing || heroVisible;
+  }
+  window.addEventListener('scroll', syncMusicDock, { passive: true });
+  window.addEventListener('resize', syncMusicDock, { passive: true });
+  syncMusicDock();
 
   function reflectMusic(active) {
     playing = active;
+    dock.hidden = !active || heroVisible;
     record.dataset.state = active ? 'playing' : 'paused';
     musicButtons.forEach((button) => {
       const icon = button.querySelector('[data-music-icon]');
@@ -254,7 +266,6 @@
       player.pause();
       return;
     }
-    dock.hidden = false;
     try {
       if (player.ended) player.currentTime = 0;
       await player.play();
@@ -281,6 +292,10 @@
   });
   player.addEventListener('error', musicError);
 
+  document.querySelectorAll('a[href="galaxia.html"]').forEach((link) => {
+    link.addEventListener('click', () => player.pause());
+  });
+
   const localVideos = [...document.querySelectorAll('.memory-film video')];
   localVideos.forEach((video) => {
     const coordinateAudio = () => {
@@ -293,4 +308,3 @@
     video.addEventListener('volumechange', coordinateAudio);
   });
 })();
-
